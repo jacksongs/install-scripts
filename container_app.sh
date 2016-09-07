@@ -15,7 +15,10 @@ npm -g install grunt-cli
 locale-gen en_US.UTF-8
 
 #superdesk
-mkdir -p /opt/superdesk/client
+mkdir -p /opt/superdesk/client /opt/superdesk/.git/refs
+cp /mnt/superdesk/.git/HEAD /opt/superdesk/.git/
+cp -r /mnt/superdesk/.git/refs/ /opt/superdesk/.git/refs/
+
 cp /mnt/superdesk/server/requirements.txt /opt/superdesk/
 cd /opt/superdesk/
 pip3 install virtualenv
@@ -39,5 +42,3 @@ virtualenv env
 . env/bin/activate
 pip3 install -U -r /opt/superdesk-content-api/requirements.txt
 cp -r /mnt/superdesk-content-api/. /opt/superdesk-content-api/
-
-#find /root/. -type d -name '.[^.]*' -prune -exec rm -r {} +

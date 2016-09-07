@@ -11,7 +11,7 @@ apt-get clean
 
 ln -s /usr/bin/nodejs /usr/bin/node
 npm -g install npm
-npm -g install grunt-cli bower
+npm -g install grunt-cli
 locale-gen en_US.UTF-8
 
 #superdesk
@@ -25,10 +25,6 @@ pip3 install -U -r /opt/superdesk/requirements.txt
 
 cp /mnt/superdesk/client/package.json /opt/superdesk/client/
 cd /opt/superdesk/client && npm install
-
-cp /mnt/superdesk/client/bower.json /opt/superdesk/client/
-cp /mnt/superdesk/client/.bowerrc /opt/superdesk/client/
-cd /opt/superdesk/client && bower --allow-root install
 
 cp -r /mnt/superdesk/server/. /opt/superdesk/
 cp -r /mnt/superdesk/client/ /opt/superdesk/

@@ -5,9 +5,9 @@ SCRIPTS_PATH=/mnt/install-scripts
 apt-get update
 apt-get -y install git
 
-git clone https://github.com/superdesk/install-scripts.git $SCRIPTS_PATH
-git clone https://github.com/superdesk/superdesk.git /mnt/superdesk
-git clone https://github.com/superdesk/superdesk-content-api.git /mnt/superdesk-content-api
+git clone --depth 1 https://github.com/superdesk/install-scripts.git $SCRIPTS_PATH
+git clone --depth 1 https://github.com/superdesk/superdesk.git /mnt/superdesk
+git clone --depth 1 https://github.com/superdesk/superdesk-content-api.git /mnt/superdesk-content-api
 
 sh $SCRIPTS_PATH/container_services.sh
 sh $SCRIPTS_PATH/container_app.sh

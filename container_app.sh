@@ -9,7 +9,7 @@ libfreetype6-dev liblcms2-dev libwebp-dev \
 curl libfontconfig nodejs npm daemon
 apt-get clean
 
-ln -s /usr/bin/nodejs /usr/bin/node
+[ ! -f /usr/bin/node ] && ln -s /usr/bin/nodejs /usr/bin/node
 npm -g install npm
 npm -g install grunt-cli
 locale-gen en_US.UTF-8

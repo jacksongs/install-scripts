@@ -10,8 +10,8 @@ curl libfontconfig nodejs npm daemon
 apt-get clean
 
 [ ! -f /usr/bin/node ] && ln -s /usr/bin/nodejs /usr/bin/node
-npm -g install npm
-npm -g install grunt-cli
+npm install -g n npm grunt-cli
+n latest
 locale-gen en_US.UTF-8
 
 #superdesk

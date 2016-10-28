@@ -1,5 +1,7 @@
 #!/bin/sh
 
+locale-gen en_US.UTF-8
+
 DEBIAN_FRONTEND=noninteractive
 apt-get install -y --no-install-recommends \
 python3 python3-dev python3-pip python3-lxml \
@@ -10,35 +12,26 @@ curl libfontconfig nodejs npm daemon
 apt-get clean
 
 [ ! -f /usr/bin/node ] && ln -s /usr/bin/nodejs /usr/bin/node
-npm install -g n npm grunt-cli
-n latest
-locale-gen en_US.UTF-8
+npm install -g n npm grunt-cli && n lts
 
-#superdesk
-mkdir -p /opt/superdesk/client /opt/superdesk/.git/refs
-cp /mnt/superdesk/.git/HEAD /opt/superdesk/.git/
-cp -r /mnt/superdesk/.git/refs/ /opt/superdesk/.git/refs/
-
-cp /mnt/superdesk/server/requirements.txt /opt/superdesk/
+#superdesk server
+mkdir /opt/superdesk/
+cp -r /mnt/superdesk/server/. /opt/superdesk/
 cd /opt/superdesk/
 pip3 install virtualenv
 virtualenv env
 . env/bin/activate
 pip3 install -U -r /opt/superdesk/requirements.txt
 
-cp /mnt/superdesk/client/package.json /opt/superdesk/client/
-cd /opt/superdesk/client && npm install
-
-cp -r /mnt/superdesk/server/. /opt/superdesk/
+#superdesk client
 cp -r /mnt/superdesk/client/ /opt/superdesk/
-
-cd /opt/superdesk/client && grunt build
+cd /opt/superdesk/client
+npm install && grunt build
 
 #superdesk-content-api
 mkdir /opt/superdesk-content-api
-cp /mnt/superdesk-content-api/requirements.txt /opt/superdesk-content-api/
+cp -r /mnt/superdesk-content-api/. /opt/superdesk-content-api/
 cd /opt/superdesk-content-api/
 virtualenv env
 . env/bin/activate
 pip3 install -U -r /opt/superdesk-content-api/requirements.txt
-cp -r /mnt/superdesk-content-api/. /opt/superdesk-content-api/

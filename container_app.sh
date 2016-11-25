@@ -8,10 +8,9 @@ python3 python3-dev python3-pip python3-lxml \
 build-essential libffi-dev git \
 libtiff5-dev libjpeg8-dev zlib1g-dev \
 libfreetype6-dev liblcms2-dev libwebp-dev \
-curl libfontconfig nodejs npm daemon
+curl libfontconfig npm daemon
 apt-get clean
 
-[ ! -f /usr/bin/node ] && ln -s /usr/bin/nodejs /usr/bin/node
 npm install -g n npm grunt-cli && n lts
 
 #superdesk server
